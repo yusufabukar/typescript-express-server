@@ -1,15 +1,14 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
+import AppRouter from './AppRouter';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
-import router from './routes/logIn';
+import './controllers/RootController';
 import './controllers/LogInController';
-import AppRouter from './AppRouter';
 
 const server = express();
 
 server.use(bodyParser.urlencoded({extended: true}));
 server.use(cookieSession({keys: ['key']}));
-server.use(router);
 server.use(AppRouter.getInstance());
 
 server.listen(3000, () => {
